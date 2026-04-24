@@ -1,0 +1,191 @@
+#include "PostBST.h"
+
+// Constructor
+PostBST::PostBST() {
+    root = nullptr;
+}
+
+// ================= INSERT =================
+
+Node* PostBST::insert(Node* root, Post p) {
+
+    // TODO:
+    // Implement recursive BST insertion
+    // Rules:
+    // 1. Insert based on postID
+    // 2. No duplicate IDs allowed
+
+    if (root == nullptr) {
+        return new Node(p);
+    }
+
+    if (p.postID < root->data.postID) {
+        root->left = insert(root->left, p);
+    }
+    else if (p.postID > root->data.postID) {
+        root->right = insert(root->right, p);
+    }
+    else {
+        cout << "Duplicated ID. Post not inserted.\n";
+    }
+
+    return root;   // Temporary return
+}
+
+void PostBST::insertPost(Post p) {
+
+    root = insert(root, p);
+}
+
+// ================= SEARCH =================
+
+Node* PostBST::search(Node* root, int postID) {
+
+    // TODO:
+    // Implement recursive search
+if (root == nullptr) {
+    return nullptr;
+}
+ if (postID == root->data.postID) {
+        return root;
+    }
+    else if (postID < root->data.postID) {
+        return search(root->left, postID);
+    }
+    else {
+        return search(root->right, postID);
+    }
+}
+
+void PostBST::searchPost(int postID) {
+
+    Node* result = search(root, postID);
+
+    if (result)
+        result->data.displayPost();
+    else
+        cout << "Post Not Found\n";
+}
+
+// ================= DELETE =================
+
+Node* PostBST::findMin(Node* root) {
+
+    // TODO:
+    // Find minimum value node
+
+    return nullptr;
+}
+
+Node* PostBST::deletePost(Node* root, int postID) {
+
+    // TODO:
+    // Implement recursive delete
+    // Handle:
+    // 1. Leaf node
+    // 2. One child
+    // 3. Two children
+
+    return root;
+}
+
+void PostBST::deletePost(int postID) {
+
+    root = deletePost(root, postID);
+}
+
+// ================= TRAVERSAL =================
+
+void PostBST::inorder(Node* root) {
+
+    // TODO:
+    // Implement inorder traversal
+
+        if (root == nullptr) {
+        return;
+    }
+
+    inorder(root->left);
+    root->data.displayPost();
+    inorder(root->right);
+
+}
+
+void PostBST::displayPosts() {
+
+    if (root == nullptr) {
+        cout << "Tree is empty.\n";
+        return;
+    }
+
+    inorder(root);
+}
+
+// ================= MOST LIKED =================
+
+void PostBST::findMostLiked(Node* root, Post &maxPost) {
+
+    // TODO:
+    // Traverse tree recursively
+    // Update maxPost when needed
+        if (root == nullptr) {
+        return;
+    }
+
+    if (root->data.likes > maxPost.likes) {
+        maxPost = root->data;
+    }
+
+    findMostLiked(root->left, maxPost);
+    findMostLiked(root->right, maxPost);
+
+}
+
+void PostBST::displayMostLiked() {
+
+    if (root == nullptr) {
+        cout << "Tree is empty.\n";
+        return;
+    }
+
+    Post maxPost = root->data;
+
+    findMostLiked(root, maxPost);
+
+    cout << "\nMost Liked Post:\n";
+    maxPost.displayPost();
+}
+
+// ================= COUNT =================
+
+int PostBST::countPosts(Node* root) {
+
+    // TODO:
+    // Return total number of nodes
+
+    return 0;
+}
+
+void PostBST::totalPosts() {
+
+    cout << "Total Posts: "
+         << countPosts(root)
+         << endl;
+}
+
+// ================= HEIGHT =================
+
+int PostBST::height(Node* root) {
+
+    // TODO:
+    // Compute tree height recursively
+
+    return -1;
+}
+
+void PostBST::treeHeight() {
+
+    cout << "Tree Height: "
+         << height(root)
+         << endl;
+}
