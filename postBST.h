@@ -1,6 +1,6 @@
 #ifndef POSTBST_H
 #define POSTBST_H
-
+#include <algorithm>
 #include "Post.h"
 
 struct Node {

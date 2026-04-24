@@ -1,4 +1,6 @@
 #include "PostBST.h"
+#include <iostream>
+using namespace std;
 
 // Constructor
 PostBST::PostBST() {
@@ -163,7 +165,10 @@ int PostBST::countPosts(Node* root) {
     // TODO:
     // Return total number of nodes
 
-    return 0;
+    if (root == nullptr) {
+        return 0;
+    }
+    return 1 + countPosts(root->left) + countPosts(root->right);
 }
 
 void PostBST::totalPosts() {
@@ -176,11 +181,16 @@ void PostBST::totalPosts() {
 // ================= HEIGHT =================
 
 int PostBST::height(Node* root) {
-
     // TODO:
     // Compute tree height recursively
+    if (root == nullptr) {
+        return -1;
+    }
 
-    return -1;
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+
+    return 1 + max(leftHeight, rightHeight);
 }
 
 void PostBST::treeHeight() {
