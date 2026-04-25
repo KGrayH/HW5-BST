@@ -1,3 +1,8 @@
+//Hensley H. and Windtell S.
+//4/24/2026
+//CSC 340 - Professor Karun Mehta
+// Assignment 5 - Insta post manager using BST
+
 #include "PostBST.h"
 #include <iostream>
 #include <string>
