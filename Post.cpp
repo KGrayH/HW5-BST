@@ -42,7 +42,9 @@ Post::Post(const Post& other)
       time_stamp(other.time_stamp),
       numberOfLikes(other.numberOfLikes),
       mediaURL(other.mediaURL),
-      videoLengthSeconds(other.videoLengthSeconds)
+      videoLengthSeconds(other.videoLengthSeconds),
+      postID(other.postID),
+      likes(other.likes)
 {
 }
 // Assignment op
@@ -53,6 +55,8 @@ Post& Post::operator=(const Post& other) {
         numberOfLikes = other.numberOfLikes;
         mediaURL = other.mediaURL;
         videoLengthSeconds = other.videoLengthSeconds;
+        postID = other.postID;
+        likes = other.likes;
     }
     return *this;
 }

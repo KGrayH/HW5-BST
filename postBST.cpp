@@ -76,7 +76,15 @@ Node* PostBST::findMin(Node* root) {
     // TODO:
     // Find minimum value node
 
-    return nullptr;
+      if (root == nullptr) {
+        return nullptr;
+    }
+
+    while (root->left != nullptr) {
+        root = root->left;
+    }
+
+    return root;
 }
 
 Node* PostBST::deletePost(Node* root, int postID) {
@@ -87,6 +95,37 @@ Node* PostBST::deletePost(Node* root, int postID) {
     // 1. Leaf node
     // 2. One child
     // 3. Two children
+
+    if (root == nullptr) {
+        return nullptr;
+    }
+
+    if (postID < root->data.postID) {
+        root->left = deletePost(root->left, postID);
+    }
+    else if (postID > root->data.postID) {
+        root->right = deletePost(root->right, postID);
+    }
+    else {
+        if (root->left == nullptr && root->right == nullptr) {
+            delete root;
+            return nullptr;
+        }
+        else if (root->left == nullptr) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (root->right == nullptr) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        Node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = deletePost(root->right, temp->data.postID);
+    }
 
     return root;
 }
